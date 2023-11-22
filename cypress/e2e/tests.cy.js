@@ -24,7 +24,8 @@ describe('Pesquisar produtos', () => {
 
   it('Filtrar por A a Z', () => { 
     cy.get('.active_option').click({ force: true });
-    cy.get('.product_sort_container').select('az').should('contain', 'Name (A to Z)');
+    cy.get('.product_sort_container').select('az');
+    cy.get('.product_sort_container').should('contain', 'Name (A to Z)');
   });
 
   it('Filtrar por preço baixo a alto', () => {
@@ -115,12 +116,11 @@ describe('Finalizar compra', () => {
     cy.get('#continue').click();
   });
 
-  /*it('Finalizar a compra', () => {
-    //cy.get('.summary_info_label summary_total_label').should('contain', 'Total: $32.39');
+  it('Finalizar a compra', () => {
     cy.get('#finish').click();
     cy.get('.complete-header').should('contain', 'Thank you for your order!');
     cy.get('#back-to-products').click();
-    cy.get('.header_secondary_container', '.title').should('contain', 'Products');
-  });*/ 
+    cy.contains('Products').should('be.visible');
+  });
 
 });
